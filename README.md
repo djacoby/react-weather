@@ -1,3 +1,14 @@
+This is single page weather application that generates a current weather report, and five day weather report based off the users location. On page load for the app the user is prompted to allow the app to get their geolocation using the Navigator api. If the user accepts then an api call is made to open weather map using their latitude and longitude to return the data. If they decline the app makes an api using the default zip code (10001 for New York City). The user then may enter any valid zip code to receive the weather reports for the given zip code. 
+
+APIs: 
+  Open Weather Map
+NPM dependencies: 
+  Axios - For GET requests
+  Serve - Serves optimized production build on heroku
+                 
+
+<a href="https://react-weather-app-david-jacoby.herokuapp.com/" target="_blank">Hosted Live Version</a>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
