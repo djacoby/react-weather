@@ -1,4 +1,4 @@
-## <a href="https://react-weather-app-david-jacoby.herokuapp.com/" target="_blank">Hosted Live Version</a>
+## <a href="https://react-weather-app-david-jacoby.herokuapp.com/" target="_blank">Live Version</a>
 
 ### Description
 
