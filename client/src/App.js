@@ -4,9 +4,6 @@ import WeatherContainer from './WeatherContainer';
 import Spinner from './Spinner';
 import './App.css';
 
-const WEATHER_BASE_URL = 'https://api.openweathermap.org/data/2.5/';
-const WEATHER_API_KEY = 'aa3aba2193891d9b2628f705d0f7514a';
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -17,26 +14,26 @@ export default class App extends Component {
       longitude: null,
       day: null,
       date: null,
-      fiveDayForecast: null
+      fiveDayForecast: null,
     };
   }
 
   componentDidMount() {
     this.getCurrentDate();
     navigator.geolocation.getCurrentPosition(
-      position => {
+      (position) => {
         const { latitude, longitude } = position.coords;
         if (position.coords !== null) {
           this.setState({
             latitude: latitude,
-            longitude: longitude
+            longitude: longitude,
           });
 
           this.getCurrentWeather();
           this.getFiveDayForecast();
         }
       },
-      denied => {
+      (denied) => {
         this.getCurrentWeather();
         this.getFiveDayForecast();
       }
@@ -51,13 +48,17 @@ export default class App extends Component {
   }
 
   async getCurrentWeather() {
+    const geolocation = {
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+    };
     if (this.state.latitude !== null && this.state.longitude !== null) {
       try {
-        const res = await axios.get(
-          `${WEATHER_BASE_URL}weather?lat=${this.state.latitude}&lon=${this.state.longitude}&us&units=imperial&&APPID=${WEATHER_API_KEY}`
-        );
+        const res = await axios.post('/api/geolocation', {
+          geolocation: geolocation,
+        });
         this.setState({
-          weather: res.data
+          weather: res.data,
         });
       } catch (error) {
         console.error(error);
@@ -69,11 +70,9 @@ export default class App extends Component {
       }
     } else if (this.state.zip !== null) {
       try {
-        const res = await axios.get(
-          `${WEATHER_BASE_URL}weather?zip=${this.state.zip},us&units=imperial&&APPID=${WEATHER_API_KEY}`
-        );
+        const res = await axios.post('/api/zipcode', { zip: this.state.zip });
         this.setState({
-          weather: res.data
+          weather: res.data,
         });
       } catch (error) {
         console.error(error);
@@ -85,79 +84,33 @@ export default class App extends Component {
   }
 
   async getFiveDayForecast() {
+    const geolocation = {
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
+    };
     if (this.state.latitude !== null && this.state.longitude !== null) {
       try {
-        const res = await axios.get(
-          `${WEATHER_BASE_URL}forecast?lat=${this.state.latitude}&lon=${this.state.longitude}&us&units=imperial&&APPID=${WEATHER_API_KEY}`
-        );
-        this.sortFiveDayForecast(res.data.list);
+        const res = await axios.post('/api/geolocation/fiveday', {
+          geolocation: geolocation,
+        });
+        this.setState({
+          fiveDayForecast: res.data,
+        });
       } catch (error) {
         console.error(error);
       }
     } else if (this.state.zip !== null) {
       try {
-        const res = await axios.get(
-          `${WEATHER_BASE_URL}forecast?zip=${this.state.zip},us&units=imperial&&APPID=${WEATHER_API_KEY}`
-        );
-        this.sortFiveDayForecast(res.data.list);
+        const res = await axios.post('/api/zipcode/fiveday', {
+          zip: this.state.zip,
+        });
+        this.setState({
+          fiveDayForecast: res.data,
+        });
       } catch (error) {
         console.error(error);
       }
     }
-  }
-
-  sortFiveDayForecast(res) {
-    const fiveDay = [];
-    const date = new Date();
-    let day = date.getDay();
-    for (let i = 0; i < res.length; i += 8) {
-      const lowArr = [];
-      const highArr = [];
-      const iconArr = [];
-      ++day;
-      if (day === 7) {
-        day = 0;
-      }
-      for (let j = 0; j < 8; j++) {
-        lowArr.push(res[i + j].main.temp_min);
-        highArr.push(res[i + j].main.temp_max);
-        iconArr.push(res[i + j].weather[0].main);
-
-        if (j === 7) {
-          const low = Math.min(...lowArr);
-          const high = Math.max(...highArr);
-          const icon = this.sortIcons(iconArr);
-          const newWeatherObject = {
-            low: low,
-            high: high,
-            day: day,
-            icon: icon
-          };
-          fiveDay.push(newWeatherObject);
-        }
-      }
-    }
-
-    this.setState({
-      fiveDayForecast: fiveDay
-    });
-  }
-
-  sortIcons(array) {
-    if (array.length === 0) return null;
-    var modeMap = {};
-    var maxEl = array[0],
-      maxCount = 1;
-    for (var i = 0; i < array.length; i++) {
-      var el = array[i];
-      if (modeMap[el] == null) modeMap[el] = 1;
-      else modeMap[el]++;
-      if (modeMap[el] > maxCount) {
-        maxEl = el;
-        maxCount = modeMap[el];
-      }
-    }
-    return maxEl;
   }
 
   getCurrentDate() {
@@ -170,19 +123,19 @@ export default class App extends Component {
       month: month,
       day: day,
       year: year,
-      dayOfTheWeek: dayOfTheWeek
+      dayOfTheWeek: dayOfTheWeek,
     };
     this.setState({
       day: dayOfTheWeek,
-      date: fullDate
+      date: fullDate,
     });
   }
 
-  updateLocation = zip => {
+  updateLocation = (zip) => {
     this.setState({
       zip: zip,
       latitude: null,
-      longitude: null
+      longitude: null,
     });
   };
 
