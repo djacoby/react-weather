@@ -1,4 +1,4 @@
-<a href="https://react-weather-app-david-jacoby.herokuapp.com/"><img src="./assets/cloud-drizzle.svg" title="weather" alt="weather icon"></a>
+<a href="https://react-weather-app-david-jacoby.herokuapp.com/" target="_blank">Live Version</a>
 
 ## React/ Express Weather
 
