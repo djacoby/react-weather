@@ -1,81 +1,77 @@
-## <a href="https://react-weather-app-david-jacoby.herokuapp.com/" target="_blank">Live Version</a>
+<a href="https://react-weather-app-david-jacoby.herokuapp.com/"><img src="./assets/cloud-drizzle.svg" title="weather" alt="weather icon"></a>
 
-### Description
+## React/ Express Weather
 
-This is single page weather application that generates a current weather report, and five day weather report based off the users location. On page load for the app the user is prompted to allow the app to get their geolocation using the Navigator api. If the user accepts then an api call is made to open weather map using their latitude and longitude to return the data. If they decline the app makes an api using the default zip code (10001 for New York City). The user then may enter any valid zip code to receive the weather reports for the given zip code. 
-<br/>
-### APIs: 
-Open Weather Map
+> Weather Application
 
-### NPM dependencies: 
-Axios - For GET requests </br>
-Serve - Serves optimized production build on heroku<br/>
+> React Express.js Node.js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Build: 1.0.0
+- License: MIT
+- Author: David Jacoby
 
-## Available Scripts
+<img src="http://g.recordit.co/BSHhyy1c2V.gif" title="react weather" alt="amico log">
 
-In the project directory, you can run:
+## About
 
-### `npm start`
+This is single page weather application that generates a current weather report, and five day weather report based off the users location. On page load for the app the user is prompted to allow the app to get their geolocation using the Navigator api. If the user accepts then an api call is made to open weather map using their latitude and longitude to return the data. If they decline the app makes an api using the default zip code (10001 for New York City). The user then may enter any valid zip code to receive the weather reports for the given zip code.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Setup
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Clone this repo to your local machine using `https://github.com/jacoby934/react-weather.git`
+- cd into the repo and install packages for the backend
 
-### `npm test`
+```shell
+$ cd react-weather
+$ npm install
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- cd into client to install npm packages
 
-### `npm run build`
+```shell
+$ cd client
+$ npm install
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- cd out of client into root directory of project and type run command
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```shell
+$ cd ..
+$ npm run dev
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Support
 
-### `npm run eject`
+Reach out to me at one of the following places!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Website at <a href="https://david-jacoby.com" target="_blank">`david-jacoby.com`</a>
+- Email at david-jacoby@protonmail.com
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> Dev Dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- concurrently 5.2.0
+- nodemon 2.0.4
 
-## Learn More
+> Server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- axios 0.19.2
+- config 3.3.1
+- cors 2.8.5
+- express 4.17.1
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> Client
 
-### Code Splitting
+- axios 0.19.2
+- react 16.3.0
+- react-dom 16.13.0
+- react-feather 2.0.3
+- react-scripts 3.4.0
+- serve 11.3.0
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## License
 
-### Analyzing the Bundle Size
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
