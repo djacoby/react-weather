@@ -10,7 +10,7 @@ const WEATHER_API_KEY = config.get('WeatherApiKey');
 
 // @route POST api/zipcode
 // @desc call OpenWeatherApi using zipcode for current weather report
-// Public
+// Public 
 router.post('/', async (req, res) => {
   const weather = await axios.get(
     `${WEATHER_BASE_URL}weather?zip=${req.body.zip},us&units=imperial&&APPID=${WEATHER_API_KEY}`
